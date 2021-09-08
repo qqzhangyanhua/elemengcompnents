@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<body>
+    <script>
+        function InitTime(endTime) {
+            var dd, hh, mm, ss = null;
+            var date = (new Date(endTime)) - (new Date()); //计算剩余的毫秒数
+            if (date <= 0) {
+                return '结束'
+            }
+            if (date == 0) {
+                clearInterval(interval)
+            } else {
+                var D = parseInt(date / 1000 / 60 / 60 / 24, 10);
+
+                var h = parseInt(date / 1000 / 60 / 60 % 24, 10);
+                if (h < 10) {
+                    h = "0" + h
+                }
+                var m = parseInt(date / 1000 / 60 % 60, 10); //计算剩余的分钟
+                if (m < 10) {
+                    m = "0" + m
+                }
+                var s = parseInt(date / 1000 % 60, 10); //计算剩余的秒数
+                if (s < 10) {
+                    s = "0" + s
+                }
+                var str = D + "天" + h + '时' + m + '分' + s;
+                return str
+            }
+        }
+        // console.log(InitTime(1572487200000))
+        // console.log(InitTime(1572487200000))
+        // var array = [{
+        //     a: 1,
+        //     b: 4
+        // }, {
+        //     a: 1,
+        //     b: 3
+        // }, {
+        //     a: 1,
+        //     b: 2
+        // }];
+
+        // array.forEach(function (e) {
+        //     console.log(e.b);
+        // });
+        var arr = [{
+                endTime: 1572537599000,
+
+                startTime: 1572487200000,
+
+            }, {
+                endTime: 1572537599000,
+
+                startTime: 1572487200000,
+
+            }
+
+        ]
+
+        function forIt() {
+            var _this = this
+            arr.forEach(function (obj) {
+                _this.$set(
+                    obj, "dsj", InitTime(obj.startTime)
+
+                );
+            });
+            console.log(arr)
+        }
+        forIt()
+    </script>
+</body>
+
+</html>
